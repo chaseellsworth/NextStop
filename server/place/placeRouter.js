@@ -8,4 +8,9 @@ var placeController = require('./placeController');
 var placeRouter = express.Router();
 //INSERT ROUTES BELOW
 
+// placeRouter.get('/', placeController....);
+// placeRouter.post('/', placeController....);
+// placeRouter.put('/', placeController....);
+// placeRouter.delete('/', placeController....);
+
 module.exports = placeRouter;

@@ -8,4 +8,9 @@ var postController = require('./postController');
 var postRouter = express.Router();
 //INSERT ROUTES BELOW
 
+// postRouter.get('/', postController....);
+// postRouter.post('/', postController....);
+// postRouter.put('/', postController....);
+// postRouter.delete('/', postController....);
+
 module.exports = postRouter;

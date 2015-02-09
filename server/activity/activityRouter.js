@@ -8,4 +8,9 @@ var activityController = require('./activityController');
 var activityRouter = express.Router();
 //INSERT ROUTES BELOW
 
+// activityRouter.get('/', activityController....);
+// activityRouter.post('/', activityController....);
+// activityRouter.put('/', activityController....);
+// activityRouter.delete('/', activityController....);
+
 module.exports = activityRouter;

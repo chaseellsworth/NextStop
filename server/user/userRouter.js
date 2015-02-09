@@ -8,4 +8,9 @@ var userController = require('./userController');
 var userRouter = express.Router();
 //INSERT ROUTES BELOW
 
+// userRouter.get('/', userController....);
+// userRouter.post('/', userController....);
+// userRouter.put('/', userController....);
+// userRouter.delete('/', userController....);
+
 module.exports = userRouter;
