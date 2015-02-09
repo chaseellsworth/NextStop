@@ -31,10 +31,19 @@ models.User = bookshelf.Model.extend({
   initialize: function () {
     this.on('creating', this.addPassword.bind(this));
   },
-  project: function () {
+  photo: function () {
     return this.belongsToMany(models.Project);
   },
-  template: function () {
+  place: function () {
+    return this.belongsToMany(models.Template);
+  },
+  activity: function () {
+    return this.belongsToMany(models.Template);
+  },
+  follower: function () {
+    return this.belongsToMany(models.Template);
+  },
+  leader: function () {
     return this.belongsToMany(models.Template);
   },
   parse: models._parse,
