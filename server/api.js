@@ -1,5 +1,7 @@
 'use strict';
 
+//INSERT THE ROUTERS
+
 // var projectRouter = require('./project/projectRoutes');
 // var userRouter = require('./user/userRoutes');
 // var fileRouter = require('./file/fileRouter');
