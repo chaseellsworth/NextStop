@@ -4,17 +4,9 @@
   "description": "Geolocating and filtering of places and activities",
   "main": "client/nw.html",
   "scripts": {
-    "start": "./node_modules/forever/bin/forever start -p ./data/logs -a -o ./data/logs/stdout.log -e ./data/logs/stderr.log server ", //
-    "test": "export NODE_ENV='test'; ./node_modules/mocha/bin/mocha -t 15000 server/tests/index", //
-    "dev": "./node_modules/nodemon/bin/nodemon.js --watch ./server server", //
+    "test": "export NODE_ENV='test'; ./node_modules/mocha/bin/mocha -t 15000 server/tests/index",
+    "dev": "./node_modules/nodemon/bin/nodemon.js --watch ./server server",
     "clean": "npm install && bower install && node server/deleteAllDatabases && gulp", //
-    "clean-test": "export NODE_ENV='test'; node server/deleteAllDatabases" //
-  },
-  "window": {
-    "toolbar": true, //
-    "frame": true, //
-    "width": 800, //
-    "height": 600 //
   },
   "repository": {
     "type": "git",
@@ -38,11 +30,6 @@
     "gulp-sass": "^1.2.4",
     "gulp-uglify": "^1.0.2",
     "gulp-watch": "^3.0.0",
-    "jasmine-core": "^2.1.3",
-    "karma": "^0.12.28",
-    "karma-chrome-launcher": "^0.1.7",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-jasmine": "^0.3.2",
     "nodemon": "^1.2.1",
     "should": "^4.4.1",
     "supertest": "^0.15.0"
