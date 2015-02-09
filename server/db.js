@@ -71,7 +71,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //activities schema
+  //photos schema
   return db.schema.hasTable('photos').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('photos', function (photo) {
@@ -90,7 +90,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //activities schema
+  //posts schema
   return db.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('posts', function (posts) {
@@ -107,7 +107,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //activities schema
+  //creates join table for places and users 
   return db.schema.hasTable('places_users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('places_users', function (placesUsers) {
@@ -125,7 +125,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //activities schema
+  //creates join table for activities and users 
   return db.schema.hasTable('activities_users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('activities_users', function (activitiesUsers) {
@@ -143,7 +143,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //activities schema
+  //creates join table for activities and places 
   return db.schema.hasTable('activities_places').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('activities_places', function (activitiesPlaces) {
