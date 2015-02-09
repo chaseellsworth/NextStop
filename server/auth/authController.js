@@ -1,10 +1,16 @@
 'use strict';
 
-//Internal dependencies
-var authController = {};
+//external dependencies
+////none
+
+//internal dependencies
 var UserCollection = require('../models').collections.UserCollection;
 var User = require('../models').models.User;
 
+//controller logic
+var authController = {};
+
+//CHANGE FOR FACEBOOK AUTH
 authController.getUser = function (req, res) {
 	var userId = null;
 	var userName = null;
@@ -59,4 +65,5 @@ authController.signup = function (req, res) {
 		});
 };
 
+//export
 module.exports = authController;

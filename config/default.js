@@ -18,9 +18,9 @@ var config = {
   'mongo': 'mongodb://127.0.0.1:27017/codeFriends?auto_reconnect', //////////
   'ports': {
     'http': 8000, //////////
-    'editor': 9000, //////////
-    'chat': 9001, //////////
-    'video': 8005 //////////
+    'editor': 9000, ////////// PROB DON'T NEED
+    'chat': 9001, ////////// PROB DON'T NEED
+    'video': 8005 ////////// PROB DON'T NEED
   },
   'url': '127.0.0.1', //////////
   'github': {

@@ -8,6 +8,7 @@ var LocalStrategy = require('passport-local').Strategy;
 //internal dependencies
 var UserCollection = require('../models').collections.UserCollection;
 
+//passport methods
 passport.serializeUser(function (user, done) {
 	return done(null, user.get('id'));
 });
@@ -94,4 +95,5 @@ passport.checkIfLoggedIn = function (req, res, next) {
 	return res.status(401).send('You\'re not logged in');
 };
 
+//export
 module.exports = passport;
