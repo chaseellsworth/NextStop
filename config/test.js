@@ -3,7 +3,7 @@
  * Inherits from `default.js`
  */
 var config = {
-	'mysql': {
+	'pg': {
 		'database': 'travel_filter_test'
 	},
 };

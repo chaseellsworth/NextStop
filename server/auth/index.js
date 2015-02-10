@@ -1,7 +1,9 @@
 'use strict';
+//How it was last time below, didn't work for me
+// var config = require('config');
 
 //passport dependencies
-var config = require('config');
+var config = require('../../config/default');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
@@ -25,9 +27,9 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new FacebookStrategy({
-		clientID: config.get('facebook').clientID,
-		clientSecret: config.get('facebook').clientSecret,
-		// callbackURL: 'http://' + config.get('url') + ':' + config.get('ports').http + '/auth/login/callback'
+		clientID: config.facebook.clientID,
+		clientSecret: config.facebook.clientSecret,
+		callbackURL: 'http://' + config.url + ':' + config.ports.http + '/auth/login/callback'
 	},
 	function (accessToken, refreshToken, profile, done) {
 		// I'm not exactly sure when we use an accessToken and a refreshToken

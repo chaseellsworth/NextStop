@@ -1,7 +1,7 @@
 'use strict';
 
 //External dependencies
-var config = require('config');
+var config = require('../config/default');
 console.log('config:', config);
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -36,8 +36,8 @@ app
   .use(express.static(__dirname + '/../client'))
   .use('/auth', authRouter)
   .use('/api', apiRouter)
-  .listen(config.get('ports').http, function () {
-    console.log('Server listening on port:', config.get('ports').http);
+  .listen(config.ports.http, function () {
+    console.log('Server listening on port:', config.ports.http);
   });
 
 //Export

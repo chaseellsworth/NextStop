@@ -1,5 +1,10 @@
 'use strict';
+//External dependencies
 var Promise = require('bluebird');
+
+//Internal dependencies
+var config = require('../config/default.js');
+
 var knex = require('knex')({
   client: 'pg',
   connection: config.pg
