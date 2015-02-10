@@ -1,20 +1,16 @@
 'use strict';
 var Promise = require('bluebird');
-var config = require('config');
+var knex = require('knex')({
+  client: 'pg',
+  connection: config.pg
+})
+var Bookshelf = require('bookshelf')(knex);
 
-//PostgreSQL
-var knex = require('knex');
-
-//creates database
-var db = knex({
-  client: 'mysql',
-  connection: config.get('mysql')
-});
 
 //users schema
-db.createAllTables = db.schema.hasTable('users').then(function (exists) {
+knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
   if (!exists) {
-    return db.schema.createTable('users', function (user) {
+    return knex.schema.createTable('users', function (user) {
         user.increments('id').primary();
         user.string('username', 255);
         user.string('email', 255);
@@ -36,9 +32,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   }
 }).then(function () {
   //activities schema
-  return db.schema.hasTable('activities').then(function (exists) {
+  return knex.schema.hasTable('activities').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('activities', function (activity) {
+      return knex.schema.createTable('activities', function (activity) {
           activity.increments('id').primary();
           activity.string('activity_name', 255);
           activity.timestamps();
@@ -53,9 +49,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //regions schema
-  return db.schema.hasTable('regions').then(function (exists) {
+  return knex.schema.hasTable('regions').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('regions', function (place) {
+      return knex.schema.createTable('regions', function (place) {
           place.increments('id').primary();
           place.string('region_name', 255);
           place.timestamps();
@@ -70,9 +66,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //countries schema
-  return db.schema.hasTable('countries').then(function (exists) {
+  return knex.schema.hasTable('countries').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('countries', function (place) {
+      return knex.schema.createTable('countries', function (place) {
           place.increments('id').primary();
           place.string('country_name', 255);
           place.timestamps();
@@ -87,9 +83,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //local_places schema
-  return db.schema.hasTable('local_places').then(function (exists) {
+  return knex.schema.hasTable('local_places').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('local_places', function (place) {
+      return knex.schema.createTable('local_places', function (place) {
           place.increments('id').primary();
           place.string('local_place_name', 255);
           //longitude
@@ -106,9 +102,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //creates join table for posts and each posts' content
-  return db.schema.hasTable('posts').then(function (exists) {
+  return knex.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('posts', function (post) {
+      return knex.schema.createTable('posts', function (post) {
           post.increments('id').primary();
           post.text('comment');
           post.integer('user_id').unsigned().references('id').inTable('users');
@@ -128,9 +124,9 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //photos schema
-  return db.schema.hasTable('photos').then(function (exists) {
+  return knex.schema.hasTable('photos').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('photos', function (photo) {
+      return knex.schema.createTable('photos', function (photo) {
           photo.increments('id').primary();
           photo.text('comment');
           photo.integer('post_id').unsigned().references('id').inTable('posts');
@@ -148,4 +144,4 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   console.log('Error Creating Tables: ', err);
 });
 
-module.exports = db;
+module.exports.DB = Bookshelf;

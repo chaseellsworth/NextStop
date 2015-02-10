@@ -24,11 +24,10 @@ passport.deserializeUser(function (id, done) {
 		});
 });
 
-//ADJUST THIS FOR FACEBOOK!!!!
 passport.use(new FacebookStrategy({
 		clientID: config.get('facebook').clientID,
 		clientSecret: config.get('facebook').clientSecret,
-		callbackURL: 'http://' + config.get('url') + ':' + config.get('ports').http + '/auth/login/callback'
+		// callbackURL: 'http://' + config.get('url') + ':' + config.get('ports').http + '/auth/login/callback'
 	},
 	function (accessToken, refreshToken, profile, done) {
 		// I'm not exactly sure when we use an accessToken and a refreshToken
@@ -42,15 +41,15 @@ passport.use(new FacebookStrategy({
 					return user;
 				})
 				.catch(function () {
-					return new UserCollection() ////////////Change to facebook
+					return new UserCollection()
 						.create({
 							username: profile._json.login,
-				// githubId: profile._json.id,
-				// githubName: profile._json.name,
-				// githubEmail: profile._json.email,
-				// githubLocation: profile._json.location,
-				// githubAccessToken: accessToken,
-				// githubAvatarUrl: profile._json.avatar_url
+							facebookId: profile._json.id,
+							facebookName: profile._json.name,
+							facebookEmail: profile._json.email,
+							facebookLocation: profile._json.location,
+							facebookAccessToken: accessToken,
+							facebookAvatarUrl: profile._json.avatar_url
 						})
 						.then(function (user) {
 							if (!user) throw new Error('No User Found');
