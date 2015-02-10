@@ -58,8 +58,8 @@ models.User = bookshelf.Model.extend({
 models.Activity = bookshelf.Model.extend({
   tableName: 'activities',
   hasTimestamps: true,
-  user: function () {
-    return this.belongsTo(models.User);
+  post: function () {
+    return this.belongsToMany(models.Post);
   },
   parse: models._parse,
   format: models._format
@@ -68,8 +68,8 @@ models.Activity = bookshelf.Model.extend({
 models.Region = bookshelf.Model.extend({
   tableName: 'regions',
   hasTimestamps: true,
-  user: function () {
-    return this.belongsTo(models.User);
+  post: function () {
+    return this.belongsToMany(models.Post);
   },
   parse: models._parse,
   format: models._format
@@ -78,8 +78,8 @@ models.Region = bookshelf.Model.extend({
 models.Country = bookshelf.Model.extend({
   tableName: 'countries',
   hasTimestamps: true,
-  user: function () {
-    return this.belongsTo(models.User);
+  post: function () {
+    return this.belongsToMany(models.Post);
   },
   parse: models._parse,
   format: models._format
@@ -88,8 +88,8 @@ models.Country = bookshelf.Model.extend({
 models.LocalPlace = bookshelf.Model.extend({
   tableName: 'local_places',
   hasTimestamps: true,
-  user: function () {
-    return this.belongsTo(models.User);
+  post: function () {
+    return this.belongsToMany(models.Post);
   },
   parse: models._parse,
   format: models._format
@@ -100,6 +100,28 @@ models.Post = bookshelf.Model.extend({
   hasTimestamps: true,
   user: function () {
     return this.belongsTo(models.User);
+  },
+  activity: function () {
+    return this.belongsToMany(models.Activity);
+  },
+  region: function () {
+    return this.belongsTo(models.Region);
+  },
+  country: function () {
+    return this.belongsTo(models.Country);
+  },
+  localPlace: function () {
+    return this.belongsTo(models.LocalPlace);
+  },
+  parse: models._parse,
+  format: models._format
+});
+
+models.Photo = bookshelf.Model.extend({
+  tableName: 'photos',
+  hasTimestamps: true,
+  post: function () {
+    return this.belongsTo(models.Post);
   },
   parse: models._parse,
   format: models._format
@@ -114,8 +136,14 @@ collections.UserCollection = bookshelf.Collection.extend({
 collections.ActivityCollection = bookshelf.Collection.extend({
   model: models.Activity
 });
-collections.PlaceCollection = bookshelf.Collection.extend({
-  model: models.Place
+collections.RegionCollection = bookshelf.Collection.extend({
+  model: models.Region
+});
+collections.CountryCollection = bookshelf.Collection.extend({
+  model: models.Country
+});
+collections.LocalPlaceCollection = bookshelf.Collection.extend({
+  model: models.LocalPlace
 });
 collections.PostCollection = bookshelf.Collection.extend({
   model: models.Post
@@ -124,5 +152,6 @@ collections.PhotoCollection = bookshelf.Collection.extend({
   model: models.Photo
 });
 
+//export models and collections
 exports.models = models;
 exports.collections = collections;
