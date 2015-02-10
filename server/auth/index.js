@@ -1,6 +1,7 @@
 'use strict';
 
 //passport dependencies
+var config = require('config');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
@@ -25,8 +26,8 @@ passport.deserializeUser(function (id, done) {
 
 //ADJUST THIS FOR FACEBOOK!!!!
 passport.use(new FacebookStrategy({
-		clientID: config.get('github').clientID,
-		clientSecret: config.get('github').clientSecret,
+		clientID: config.get('facebook').clientID,
+		clientSecret: config.get('facebook').clientSecret,
 		callbackURL: 'http://' + config.get('url') + ':' + config.get('ports').http + '/auth/login/callback'
 	},
 	function (accessToken, refreshToken, profile, done) {

@@ -19,9 +19,10 @@ var config = {
     'http': 8000,
   },
   'url': '127.0.0.1',
-  'github': { // put facebook keys right here
-    'clientID': '364ea3bc2b086177fd27', //////////
-    'clientSecret': '2dce4e81ad618474f5c822b4567200b941a6c1b1', //////////
+  'facebook': {
+    'clientID': '1058973787461852',
+    'clientSecret': '9de526076fd38f73aef94e990c611c29',
+    'url': ''
   },
   'timeFormat': 'YYYY-MM-DDTHH:MM:SSZ',
 };
