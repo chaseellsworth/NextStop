@@ -13,8 +13,7 @@ describe('Travel Filters', function () {
     });
   });
 
-  require('./db.tests.js'); /////FIX FOR HAVING DB IN A DB FOLDER
-  require('./db');
+  require('./db/db.tests.js');
   require('./integration');
   require('./unit');
 

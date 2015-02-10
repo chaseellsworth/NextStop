@@ -7,8 +7,8 @@ var knex = require('knex');
 
 //creates database
 var db = knex({
-  client: 'pg',
-  connection: config.get('pg')
+  client: 'mysql',
+  connection: config.get('mysql')
 });
 
 //users schema

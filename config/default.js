@@ -9,26 +9,20 @@
  * - - - production.js
  */
 var config = {
-  'mysql': { //////////
+  'mysql': {
     'host': 'localhost',
     'user': 'root',
     'password': '',
-    'database': 'code_friends' //////////
+    'database': 'travel_filters'
   },
-  'mongo': 'mongodb://127.0.0.1:27017/codeFriends?auto_reconnect', //////////
   'ports': {
-    'http': 8000, //////////
-    'editor': 9000, ////////// PROB DON'T NEED
-    'chat': 9001, ////////// PROB DON'T NEED
-    'video': 8005 ////////// PROB DON'T NEED
+    'http': 8000,
   },
-  'url': '127.0.0.1', //////////
-  'github': {
+  'url': '127.0.0.1',
+  'github': { // put facebook keys right here
     'clientID': '364ea3bc2b086177fd27', //////////
     'clientSecret': '2dce4e81ad618474f5c822b4567200b941a6c1b1', //////////
   },
   'timeFormat': 'YYYY-MM-DDTHH:MM:SSZ',
-  'tmpDirectory': '../data/tmp',
-  'gitRepositoriesDirectory': '../data/git-repositories'
 };
 module.exports = config;
