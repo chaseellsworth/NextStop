@@ -45,12 +45,12 @@ passport.use(new FacebookStrategy({
 					return new UserCollection() ////////////Change to facebook
 						.create({
 							username: profile._json.login,
-							githubId: profile._json.id,
-							githubName: profile._json.name,
-							githubEmail: profile._json.email,
-							githubLocation: profile._json.location,
-							githubAccessToken: accessToken,
-							githubAvatarUrl: profile._json.avatar_url
+				// githubId: profile._json.id,
+				// githubName: profile._json.name,
+				// githubEmail: profile._json.email,
+				// githubLocation: profile._json.location,
+				// githubAccessToken: accessToken,
+				// githubAvatarUrl: profile._json.avatar_url
 						})
 						.then(function (user) {
 							if (!user) throw new Error('No User Found');
