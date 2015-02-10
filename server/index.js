@@ -30,7 +30,7 @@ app
   .use(auth.initialize())
   .use(auth.session());
 
-//Set Routes
+//Set Routes and start server
 app
   .use('/config.js', clientConfigParser)
   .use(express.static(__dirname + '/../client'))

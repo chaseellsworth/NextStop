@@ -1,13 +1,13 @@
 'use strict';
 
-//external dependencies
+//External dependencies
 ////none
 
-//internal dependencies
+//Internal dependencies
 var UserCollection = require('../models').collections.UserCollection;
 var User = require('../models').models.User;
 
-//controller logic
+//Controller logic
 var authController = {};
 
 //CHANGE FOR FACEBOOK AUTH

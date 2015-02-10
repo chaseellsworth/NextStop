@@ -1,12 +1,12 @@
 'use strict';
 
-//external dependencies
+//External dependencies
 var express = require('express');
 
-//internal dependencies
+//Internal dependencies
 var authController = require('./authController');
 
-//new instance of express router
+//New instance of express router
 var auth = require('./index');
 var authRouter = express.Router();
 

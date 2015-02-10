@@ -41,7 +41,7 @@ passport.use(new FacebookStrategy({
 					return user;
 				})
 				.catch(function () {
-					return new UserCollection()
+					return new UserCollection() ////////////Change to facebook
 						.create({
 							username: profile._json.login,
 							githubId: profile._json.id,
