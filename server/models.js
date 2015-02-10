@@ -67,8 +67,9 @@ models.User = bookshelf.Model.extend({
   },
 });
 
-models.Project = bookshelf.Model.extend({
-  tableName: 'projects',
+//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
+models.Activity = bookshelf.Model.extend({
+  tableName: 'activities',
   hasTimestamps: true,
   user: function () {
     return this.belongsToMany(models.User);
@@ -77,8 +78,9 @@ models.Project = bookshelf.Model.extend({
   format: models._format
 });
 
-models.Template = bookshelf.Model.extend({
-  tableName: 'templates',
+//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
+models.Place = bookshelf.Model.extend({
+  tableName: 'places',
   hasTimestamps: true,
   user: function () {
     return this.belongsTo(models.User);
@@ -87,17 +89,46 @@ models.Template = bookshelf.Model.extend({
   format: models._format
 });
 
+//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
+models.Photo = bookshelf.Model.extend({
+  tableName: 'photos',
+  hasTimestamps: true,
+  user: function () {
+    return this.belongsTo(models.User);
+  },
+  parse: models._parse,
+  format: models._format
+});
+
+//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
+models.Post = bookshelf.Model.extend({
+  tableName: 'posts',
+  hasTimestamps: true,
+  user: function () {
+    return this.belongsTo(models.User);
+  },
+  parse: models._parse,
+  format: models._format
+});
+
+
 //define collections
 var collections = {};
 
 collections.UserCollection = bookshelf.Collection.extend({
   model: models.User
 });
-collections.ProjectCollection = bookshelf.Collection.extend({
-  model: models.Project
+collections.ActivityCollection = bookshelf.Collection.extend({
+  model: models.Activity
 });
-collections.TemplateCollection = bookshelf.Collection.extend({
-  model: models.Template
+collections.PlaceCollection = bookshelf.Collection.extend({
+  model: models.Place
+});
+collections.PostCollection = bookshelf.Collection.extend({
+  model: models.Post
+});
+collections.PhotoCollection = bookshelf.Collection.extend({
+  model: models.Photo
 });
 
 exports.models = models;
