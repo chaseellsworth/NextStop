@@ -9,13 +9,13 @@ var should = require('should');
 var _ = require('lodash');
 
 //Internal dependencies
-var UserCollection = require('../models.js').collections.UserCollection;
-var ActivityCollection = require('../models.js').collections.ActivityCollection;
-var RegionCollection = require('../models.js').collections.RegionCollection;
-var CountryCollection = require('../models.js').collections.CountryCollection;
-var LocalPlaceCollection = require('../models.js').collections.LocalPlaceCollection;
-var PostCollection = require('../models.js').collections.PostCollection;
-var PhotoCollection = require('../models.js').collections.PhotoCollection;
+var UserCollection = require('../../models.js').collections.UserCollection;
+var ActivityCollection = require('../../models.js').collections.ActivityCollection;
+var RegionCollection = require('../../models.js').collections.RegionCollection;
+var CountryCollection = require('../../models.js').collections.CountryCollection;
+var LocalPlaceCollection = require('../../models.js').collections.LocalPlaceCollection;
+var PostCollection = require('../../models.js').collections.PostCollection;
+var PhotoCollection = require('../../models.js').collections.PhotoCollection;
 
 //ADJUST FOR NEW SCHEMA
 
@@ -57,8 +57,8 @@ describe('Database', function () {
             .fetch();
         })
         .then(function (coll) {
-          var _activity_name = _.last(coll.toJSON()).activity_name;
-          expect(_activity_name).to.equal('walking');
+          var _activityName = _.last(coll.toJSON()).activityName;
+          expect(_activityName).to.equal('walking');
           done();
         })
         .catch(function () {
@@ -80,8 +80,8 @@ describe('Database', function () {
             .fetch();
         })
         .then(function (coll) {
-          var _region_name = _.last(coll.toJSON()).region_name;
-          expect(_region_name).to.equal('Western Europe');
+          var _regionName = _.last(coll.toJSON()).regionName;
+          expect(_regionName).to.equal('Western Europe');
           done();
         })
         .catch(function () {
@@ -98,13 +98,13 @@ describe('Database', function () {
           'country_name': 'France'
         })
         .then(function () {
-          return RegionCollection
+          return CountryCollection
             .query('where', 'country_name', '=', 'France')
             .fetch();
         })
         .then(function (coll) {
-          var _country_name = _.last(coll.toJSON()).country_name;
-          expect(_country_name).to.equal('France');
+          var _countryName = _.last(coll.toJSON()).countryName;
+          expect(_countryName).to.equal('France');
           done();
         })
         .catch(function () {

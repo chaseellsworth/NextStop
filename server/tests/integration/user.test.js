@@ -5,7 +5,7 @@ var request = require('supertest-as-promised');
 var UserCollection = require('../../models').collections.UserCollection;
 var app = require('../../index');
 var agent = request.agent(app);
-var login = require('./login')(agent);
+var login = require('./login.test')(agent);
 
 describe('User', function () {
 

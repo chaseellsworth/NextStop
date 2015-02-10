@@ -1,7 +1,10 @@
 /*global describe:true, before: true, after: true */
 'use strict';
 
-var db = require('../db');
+//External dependencies
+
+//Internal dependencies
+var db = require('./db/db.tests');
 var deleteAllDatabases = require('../deleteAllDatabases');
 
 describe('Travel Filters', function () {
@@ -13,9 +16,15 @@ describe('Travel Filters', function () {
     });
   });
 
+
+  //db tests
   require('./db/db.tests.js');
-  require('./integration');
-  require('./unit');
+
+  //integration tests
+  require('./integration/login.test');
+  require('./integration/user.test');
+
+  //unit tests
 
   // Delete All Test Tables
   after(function (done) {

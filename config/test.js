@@ -5,6 +5,6 @@
 var config = {
 	'pg': {
 		'database': 'travel_filter_test'
-	},
+	}
 };
 module.exports = config;

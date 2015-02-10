@@ -11,9 +11,9 @@
 var config = {
   'pg': {
     'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    'database': 'travel_filters'
+    // 'user': 'root',
+    // 'password': '',
+    'database': 'travel_filter'
   },
   'ports': {
     'http': 8000,
