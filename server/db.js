@@ -105,7 +105,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //creates join table for activities and places 
+  //creates join table for posts and each posts' content
   return db.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('posts_join', function (postsJoin) {
@@ -132,9 +132,8 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('photos', function (photo) {
           photo.increments('id').primary();
-          photo.integer('user_id').unsigned().references('id').inTable('users');
-          photo.string('activity_name', 255);
-          // photo.string('git_repo_url', 255);
+          // photo.string('comments', 255);
+          photo.integer('post_id').unsigned().references('id').inTable('posts_join');
           photo.timestamps();
         })
         .then(function () {
