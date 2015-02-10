@@ -217,6 +217,7 @@ describe('Database', function () {
     });
   });
 
+  //ADD TEST FOR PHOTOS
 
   //create model for user with tied project
   //tests adding a new project and creating a collection
