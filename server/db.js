@@ -57,7 +57,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('regions', function (place) {
           place.increments('id').primary();
-          place.string('regions_name', 255);
+          place.string('region_name', 255);
           place.timestamps();
         })
         .then(function () {
@@ -74,7 +74,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('countries', function (place) {
           place.increments('id').primary();
-          place.string('countries_name', 255);
+          place.string('country_name', 255);
           place.timestamps();
         })
         .then(function () {
@@ -91,7 +91,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('local_places', function (place) {
           place.increments('id').primary();
-          place.string('local_places_name', 255);
+          place.string('local_place_name', 255);
           //longitude
           //latitude
           place.timestamps();
