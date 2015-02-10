@@ -108,21 +108,21 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   //creates join table for posts and each posts' content
   return db.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('posts_join', function (postsJoin) {
-          postsJoin.increments('id').primary();
-          // postsJoin.string('comments', 255);
-          postsJoin.integer('user_id').unsigned().references('id').inTable('users');
-          postsJoin.integer('activity_id').unsigned().references('id').inTable('activities');
-          postsJoin.integer('region_id').unsigned().references('id').inTable('regions');
-          postsJoin.integer('country_id').unsigned().references('id').inTable('countries');
-          postsJoin.integer('local_place_id').unsigned().references('id').inTable('local_places');
-          postsJoin.timestamps();
+      return db.schema.createTable('posts', function (post) {
+          post.increments('id').primary();
+          post.text('comment');
+          post.integer('user_id').unsigned().references('id').inTable('users');
+          post.integer('activity_id').unsigned().references('id').inTable('activities');
+          post.integer('region_id').unsigned().references('id').inTable('regions');
+          post.integer('country_id').unsigned().references('id').inTable('countries');
+          post.integer('local_place_id').unsigned().references('id').inTable('local_places');
+          post.timestamps();
         })
         .then(function () {
-          console.log('created table: posts_join');
+          console.log('created table: posts');
         })
         .catch(function (error) {
-          console.log('error creating posts_join: ', error);
+          console.log('error creating posts: ', error);
         });
     }
   });
@@ -132,7 +132,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('photos', function (photo) {
           photo.increments('id').primary();
-          // photo.string('comments', 255);
+          photo.text('comment');
           photo.integer('post_id').unsigned().references('id').inTable('posts_join');
           photo.timestamps();
         })

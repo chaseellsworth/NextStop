@@ -31,20 +31,8 @@ models.User = bookshelf.Model.extend({
   initialize: function () {
     this.on('creating', this.addPassword.bind(this));
   },
-  photo: function () {
-    return this.belongsToMany(models.Project);
-  },
-  place: function () {
-    return this.belongsToMany(models.Template);
-  },
-  activity: function () {
-    return this.belongsToMany(models.Template);
-  },
-  follower: function () {
-    return this.belongsToMany(models.Template);
-  },
-  leader: function () {
-    return this.belongsToMany(models.Template);
+  post: function () {
+    return this.belongsToMany(models.Post);
   },
   parse: models._parse,
   format: models._format,
@@ -67,20 +55,18 @@ models.User = bookshelf.Model.extend({
   },
 });
 
-//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
 models.Activity = bookshelf.Model.extend({
   tableName: 'activities',
   hasTimestamps: true,
   user: function () {
-    return this.belongsToMany(models.User);
+    return this.belongsTo(models.User);
   },
   parse: models._parse,
   format: models._format
 });
 
-//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
-models.Place = bookshelf.Model.extend({
-  tableName: 'places',
+models.Region = bookshelf.Model.extend({
+  tableName: 'regions',
   hasTimestamps: true,
   user: function () {
     return this.belongsTo(models.User);
@@ -89,9 +75,8 @@ models.Place = bookshelf.Model.extend({
   format: models._format
 });
 
-//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
-models.Photo = bookshelf.Model.extend({
-  tableName: 'photos',
+models.Country = bookshelf.Model.extend({
+  tableName: 'countries',
   hasTimestamps: true,
   user: function () {
     return this.belongsTo(models.User);
@@ -100,7 +85,16 @@ models.Photo = bookshelf.Model.extend({
   format: models._format
 });
 
-//UPDATE WITH ANY ADJUSTMENTS (e.g., change models.User)
+models.LocalPlace = bookshelf.Model.extend({
+  tableName: 'local_places',
+  hasTimestamps: true,
+  user: function () {
+    return this.belongsTo(models.User);
+  },
+  parse: models._parse,
+  format: models._format
+});
+
 models.Post = bookshelf.Model.extend({
   tableName: 'posts',
   hasTimestamps: true,
@@ -110,7 +104,6 @@ models.Post = bookshelf.Model.extend({
   parse: models._parse,
   format: models._format
 });
-
 
 //define collections
 var collections = {};
