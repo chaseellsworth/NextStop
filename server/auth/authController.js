@@ -15,6 +15,7 @@ authController.getUser = function (req, res) {
 	var userId = null;
 	var userName = null;
 	var email = null;
+	//facebook version
 	var githubAvatarUrl = 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y';
 	if (req.user && req.user.get('id') && typeof req.user.get('id') === 'number') {
 		userId = req.user.get('id');

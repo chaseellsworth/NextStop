@@ -35,29 +35,11 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
       });
   }
 }).then(function () {
-  //places schema
-  return db.schema.hasTable('places').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('places', function (place) {
-          place.increments('id').primary();
-          place.string('places_name', 255);
-          place.timestamps();
-        })
-        .then(function () {
-          console.log('created table: places');
-        })
-        .catch(function (error) {
-          console.log('error creating places: ', error);
-        });
-    }
-  });
-}).then(function () {
   //activities schema
   return db.schema.hasTable('activities').then(function (exists) {
     if (!exists) {
       return db.schema.createTable('activities', function (activity) {
           activity.increments('id').primary();
-          // activity.integer('user_id').unsigned().references('id').inTable('users');
           activity.string('activity_name', 255);
           // activity.string('git_repo_url', 255);
           activity.timestamps();
@@ -67,6 +49,74 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
         })
         .catch(function (error) {
           console.log('error creating activities: ', error);
+        });
+    }
+  });
+}).then(function () {
+  //regions schema
+  return db.schema.hasTable('regions').then(function (exists) {
+    if (!exists) {
+      return db.schema.createTable('regions', function (place) {
+          place.increments('id').primary();
+          place.string('regions_name', 255);
+          place.timestamps();
+        })
+        .then(function () {
+          console.log('created table: regions');
+        })
+        .catch(function (error) {
+          console.log('error creating regions: ', error);
+        });
+    }
+  });
+}).then(function () {
+  //countries schema
+  return db.schema.hasTable('countries').then(function (exists) {
+    if (!exists) {
+      return db.schema.createTable('countries', function (place) {
+          place.increments('id').primary();
+          place.string('countries_name', 255);
+          place.timestamps();
+        })
+        .then(function () {
+          console.log('created table: countries');
+        })
+        .catch(function (error) {
+          console.log('error creating countries: ', error);
+        });
+    }
+  });
+}).then(function () {
+  //local_places schema
+  return db.schema.hasTable('local_places').then(function (exists) {
+    if (!exists) {
+      return db.schema.createTable('local_places', function (place) {
+          place.increments('id').primary();
+          place.string('local_places_name', 255);
+          place.timestamps();
+        })
+        .then(function () {
+          console.log('created table: local_places');
+        })
+        .catch(function (error) {
+          console.log('error creating local_places: ', error);
+        });
+    }
+  });
+}).then(function () {
+  //creates join table for activities and places 
+  return db.schema.hasTable('posts').then(function (exists) {
+    if (!exists) {
+      return db.schema.createTable('activities_places', function (activitiesPlaces) {
+          activitiesPlaces.increments('id').primary();
+          activitiesPlaces.string('activity_name', 255);
+          activitiesPlaces.timestamps();
+        })
+        .then(function () {
+          console.log('created table: activities_places');
+        })
+        .catch(function (error) {
+          console.log('error creating activities_places: ', error);
         });
     }
   });
@@ -86,95 +136,6 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
         })
         .catch(function (error) {
           console.log('error creating photos: ', error);
-        });
-    }
-  });
-}).then(function () {
-  //posts schema
-  return db.schema.hasTable('posts').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('posts', function (posts) {
-          posts.increments('id').primary();
-          posts.integer('user_id').unsigned().references('id').inTable('users');
-          posts.timestamps();
-        })
-        .then(function () {
-          console.log('created table: posts');
-        })
-        .catch(function (error) {
-          console.log('error creating posts: ', error);
-        });
-    }
-  });
-}).then(function () {
-  //creates join table for places and users 
-  return db.schema.hasTable('places_users').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('places_users', function (placesUsers) {
-          placesUsers.increments('id').primary();
-          placesUsers.integer('user_id').unsigned().references('id').inTable('users');
-          placesUsers.string('activity_name', 255);
-          placesUsers.timestamps();
-        })
-        .then(function () {
-          console.log('created table: places_users');
-        })
-        .catch(function (error) {
-          console.log('error creating places_users: ', error);
-        });
-    }
-  });
-}).then(function () {
-  //creates join table for activities and users 
-  return db.schema.hasTable('activities_users').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('activities_users', function (activitiesUsers) {
-          activitiesUsers.increments('id').primary();
-          activitiesUsers.integer('user_id').unsigned().references('id').inTable('users');
-          // activitiesUsers.string('activity_name', 255);
-          activitiesUsers.timestamps();
-        })
-        .then(function () {
-          console.log('created table: activities_users');
-        })
-        .catch(function (error) {
-          console.log('error creating activities_users: ', error);
-        });
-    }
-  });
-}).then(function () {
-  //creates join table for activities and places 
-  return db.schema.hasTable('activities_places').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('activities_places', function (activitiesPlaces) {
-          activitiesPlaces.increments('id').primary();
-          activitiesPlaces.integer('user_id').unsigned().references('id').inTable('users');
-          activitiesPlaces.string('activity_name', 255);
-          activitiesPlaces.timestamps();
-        })
-        .then(function () {
-          console.log('created table: activities_places');
-        })
-        .catch(function (error) {
-          console.log('error creating activities_places: ', error);
-        });
-    }
-  });
-}).then(function () {
-  //creates join table for users and users 
-  return db.schema.hasTable('users_users').then(function (exists) {
-    if (!exists) {
-      return db.schema.createTable('users_users', function (usersUsers) {
-          usersUsers.increments('id').primary();
-          usersUsers.integer('user_id').unsigned().references('id').inTable('users');
-          usersUsers.integer('project_id').unsigned().references('id').inTable('projects');
-          usersUsers.timestamps();
-        })
-        .then(function () {
-          console.log('created table: users_users');
-        })
-        .catch(function (error) {
-          console.log('error creating users_users: ', error);
         });
     }
   });
