@@ -41,7 +41,6 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
       return db.schema.createTable('activities', function (activity) {
           activity.increments('id').primary();
           activity.string('activity_name', 255);
-          // activity.string('git_repo_url', 255);
           activity.timestamps();
         })
         .then(function () {
@@ -93,6 +92,8 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
       return db.schema.createTable('local_places', function (place) {
           place.increments('id').primary();
           place.string('local_places_name', 255);
+          //longitude
+          //latitude
           place.timestamps();
         })
         .then(function () {
@@ -107,16 +108,21 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
   //creates join table for activities and places 
   return db.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
-      return db.schema.createTable('activities_places', function (activitiesPlaces) {
-          activitiesPlaces.increments('id').primary();
-          activitiesPlaces.string('activity_name', 255);
-          activitiesPlaces.timestamps();
+      return db.schema.createTable('posts_join', function (postsJoin) {
+          postsJoin.increments('id').primary();
+          // postsJoin.string('comments', 255);
+          postsJoin.integer('user_id').unsigned().references('id').inTable('users');
+          postsJoin.integer('activity_id').unsigned().references('id').inTable('activities');
+          postsJoin.integer('region_id').unsigned().references('id').inTable('regions');
+          postsJoin.integer('country_id').unsigned().references('id').inTable('countries');
+          postsJoin.integer('local_place_id').unsigned().references('id').inTable('local_places');
+          postsJoin.timestamps();
         })
         .then(function () {
-          console.log('created table: activities_places');
+          console.log('created table: posts_join');
         })
         .catch(function (error) {
-          console.log('error creating activities_places: ', error);
+          console.log('error creating posts_join: ', error);
         });
     }
   });
