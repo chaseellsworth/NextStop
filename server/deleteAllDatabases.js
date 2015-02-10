@@ -10,6 +10,8 @@ var db = require('./db');
 
 process.stdin.resume();
 
+//////FIX FOR THE CURRENT SCHEMA
+
 var deleteAllDatabases = function () {
   return db.createAllTables
     .then(function () {
