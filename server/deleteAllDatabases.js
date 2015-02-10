@@ -3,9 +3,8 @@
 /*jshint node:true */
 'use strict';
 
-var config = require('config');
 //var Promise = require('bluebird');
-// var mongoClient = Promise.promisifyAll(require('mongodb').MongoClient);
+var config = require('config');
 var db = require('./db');
 
 process.stdin.resume();
@@ -15,19 +14,19 @@ process.stdin.resume();
 var deleteAllDatabases = function () {
   return db.createAllTables
     .then(function () {
-      return db.schema.hasTable('projects_users')
+      return db.schema.hasTable('photos')
         .then(function (exists) {
           if (exists) {
-            return db.schema.dropTable('projects_users');
+            return db.schema.dropTable('photos');
           }
           return true;
         });
     })
     .then(function () {
-      return db.schema.hasTable('templates')
+      return db.schema.hasTable('posts')
         .then(function (exists) {
           if (exists) {
-            return db.schema.dropTable('templates');
+            return db.schema.dropTable('posts');
           }
           return true;
         });
@@ -40,9 +39,27 @@ var deleteAllDatabases = function () {
           }
           return true;
         }),
-        db.schema.hasTable('projects').then(function (exists) {
+        db.schema.hasTable('activities').then(function (exists) {
           if (exists) {
-            return db.schema.dropTable('projects');
+            return db.schema.dropTable('activities');
+          }
+          return true;
+        }),
+        db.schema.hasTable('regions').then(function (exists) {
+          if (exists) {
+            return db.schema.dropTable('regions');
+          }
+          return true;
+        }),
+        db.schema.hasTable('countries').then(function (exists) {
+          if (exists) {
+            return db.schema.dropTable('countries');
+          }
+          return true;
+        }),
+        db.schema.hasTable('local_places').then(function (exists) {
+          if (exists) {
+            return db.schema.dropTable('local_places');
           }
           return true;
         }),

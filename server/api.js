@@ -1,22 +1,23 @@
 'use strict';
 
-//INSERT THE ROUTERS
+//declare routers
+var activityRouter = require('./activity/activityRouter');
+var authRouter = require('./auth/authRouter');
+var photoRouter = require('./photo/photoRouter');
+var placeRouter = require('./place/placeRouter');
+var postRouter = require('./post/postRouter');
+var userRouter = require('./user/userRouter');
 
-// var projectRouter = require('./project/projectRoutes');
-// var userRouter = require('./user/userRoutes');
-// var fileRouter = require('./file/fileRouter');
-// var templateRouter = require('./template/templateRouter');
-// var uploadRouter = require('./upload/uploadRoutes');
-// var downloadRouter = require('./download/downloadRoutes');
 var express = require('express');
 
 var apiRouter = express.Router();
 
-// apiRouter.use('/file', fileRouter);
-// apiRouter.use('/project', projectRouter);
-// apiRouter.use('/template', templateRouter);
-// apiRouter.use('/user', userRouter);
-// apiRouter.use('/upload', uploadRouter);
-// apiRouter.use('/download', downloadRouter);
+apiRouter.use('/activity', activityRouter);
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/photo', photoRouter);
+apiRouter.use('/place', placeRouter);
+apiRouter.use('/post', postRouter);
+apiRouter.use('/user', userRouter);
 
+//export
 module.exports = apiRouter;

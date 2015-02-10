@@ -133,7 +133,7 @@ db.createAllTables = db.schema.hasTable('users').then(function (exists) {
       return db.schema.createTable('photos', function (photo) {
           photo.increments('id').primary();
           photo.text('comment');
-          photo.integer('post_id').unsigned().references('id').inTable('posts_join');
+          photo.integer('post_id').unsigned().references('id').inTable('posts');
           photo.timestamps();
         })
         .then(function () {
