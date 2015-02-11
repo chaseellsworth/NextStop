@@ -84,8 +84,8 @@ models.Country = db.Model.extend({
   format: models._format
 });
 
-models.LocalPlace = db.Model.extend({
-  tableName: 'local_places',
+models.Location = db.Model.extend({
+  tableName: 'locations',
   hasTimestamps: true,
   post: function () {
     return this.belongsToMany(models.Post);
@@ -101,7 +101,7 @@ models.Post = db.Model.extend({
     return this.belongsTo(models.User);
   },
   activity: function () {
-    return this.belongsToMany(models.Activity);
+    return this.belongsTo(models.Activity);
   },
   region: function () {
     return this.belongsTo(models.Region);
@@ -109,8 +109,8 @@ models.Post = db.Model.extend({
   country: function () {
     return this.belongsTo(models.Country);
   },
-  localPlace: function () {
-    return this.belongsTo(models.LocalPlace);
+  location: function () {
+    return this.belongsTo(models.Location);
   },
   parse: models._parse,
   format: models._format
@@ -141,8 +141,8 @@ collections.RegionCollection = db.Collection.extend({
 collections.CountryCollection = db.Collection.extend({
   model: models.Country
 });
-collections.LocalPlaceCollection = db.Collection.extend({
-  model: models.LocalPlace
+collections.LocationCollection = db.Collection.extend({
+  model: models.Location
 });
 collections.PostCollection = db.Collection.extend({
   model: models.Post

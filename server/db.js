@@ -73,10 +73,10 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
   //countries schema
   return knex.schema.hasTable('countries').then(function (exists) {
     if (!exists) {
-      return knex.schema.createTable('countries', function (place) {
-          place.increments('id').primary();
-          place.string('country_name', 255);
-          place.timestamps();
+      return knex.schema.createTable('countries', function (country) {
+          country.increments('id').primary();
+          country.string('country_name', 255);
+          country.timestamps();
         })
         .then(function () {
           console.log('created table: countries');
@@ -88,20 +88,20 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
   });
 }).then(function () {
   //local_places schema
-  return knex.schema.hasTable('local_places').then(function (exists) {
+  return knex.schema.hasTable('locations').then(function (exists) {
     if (!exists) {
-      return knex.schema.createTable('local_places', function (place) {
+      return knex.schema.createTable('locations', function (place) {
           place.increments('id').primary();
-          place.string('local_place_name', 255);
+          place.string('location_name', 255);
           //longitude
           //latitude
           place.timestamps();
         })
         .then(function () {
-          console.log('created table: local_places');
+          console.log('created table: locations');
         })
         .catch(function (error) {
-          console.log('error creating local_places: ', error);
+          console.log('error creating locations: ', error);
         });
     }
   });
@@ -116,7 +116,7 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
           post.integer('activity_id').unsigned().references('id').inTable('activities');
           post.integer('region_id').unsigned().references('id').inTable('regions');
           post.integer('country_id').unsigned().references('id').inTable('countries');
-          post.integer('local_place_id').unsigned().references('id').inTable('local_places');
+          post.integer('location_id').unsigned().references('id').inTable('locations');
           post.timestamps();
         })
         .then(function () {

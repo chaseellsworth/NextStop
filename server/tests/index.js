@@ -21,8 +21,8 @@ describe('Travel Filters', function () {
   require('./db/db.tests.js');
 
   //integration tests
-  require('./integration/login.test');
-  require('./integration/user.test');
+  // require('./integration/login.test');
+  // require('./integration/user.test');
 
   //unit tests
 
