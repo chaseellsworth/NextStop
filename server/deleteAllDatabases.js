@@ -4,10 +4,10 @@
 'use strict';
 
 //External dependencies
-//var Promise = require('bluebird');
+var Promise = require('bluebird');
 
 //Internal dependencies
-var config = require('config');
+var config = require('../config/default');
 var db = require('./db');
 
 process.stdin.resume();
@@ -67,7 +67,7 @@ var deleteAllDatabases = function () {
       ]);
     })
     .then(function () {
-      console.log('Deleting All MySQL Tables');
+      console.log('Deleting All Postgres Tables');
       return true;
     })
     .then(function () {

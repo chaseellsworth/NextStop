@@ -149,4 +149,5 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
   console.log('Error Creating Tables: ', err);
 });
 
+module.exports = knex;
 module.exports.DB = Bookshelf;

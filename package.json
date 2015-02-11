@@ -4,9 +4,9 @@
   "description": "Geolocating and filtering of places and activities",
   "main": "client/nw.html",
   "scripts": {
-    "test": "export NODE_ENV='test'; ./node_modules/mocha/bin/mocha -t 15000 server/tests/index",
+    "test": "npm run clean && ./node_modules/mocha/bin/mocha -t 15000 server/tests/index",
     "dev": "./node_modules/nodemon/bin/nodemon.js --watch ./server server",
-    "clean": "npm install && bower install && node server/deleteAllDatabases && gulp"
+    "clean": "cd server && echo DROP DATABASE travel_filter | psql && echo CREATE DATABASE travel_filter | psql && (sleep 1 && pkill node) | node index.js; echo Database cleaned."
   },
   "repository": {
     "type": "git",

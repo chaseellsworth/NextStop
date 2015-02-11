@@ -8,6 +8,7 @@ var expect = require('chai').expect;
 var should = require('should');
 var _ = require('lodash');
 
+
 //Internal dependencies
 var UserCollection = require('../../models.js').collections.UserCollection;
 var ActivityCollection = require('../../models.js').collections.ActivityCollection;
