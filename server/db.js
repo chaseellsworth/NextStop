@@ -106,7 +106,7 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
     }
   });
 }).then(function () {
-  //creates join table for posts and each posts' content
+  //creates table for posts and each posts' content
   return knex.schema.hasTable('posts').then(function (exists) {
     if (!exists) {
       return knex.schema.createTable('posts', function (post) {

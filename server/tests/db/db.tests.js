@@ -148,20 +148,21 @@ describe('Database', function () {
       var country;
       var location;
 
-      return UserCollection
-        .query('where', 'id', '=', '1')
-        .fetchOne()
-        .then(function (_user) {
-          user = _user;
-          console.log('1');
+      return new Q()
+        .then(function () {
+          return UserCollection
+            .query('where', 'id', '=', '1')
+            .fetchOne()
+            .then(function (_user) {
+              user = _user.get('id');
+            });
         })
         .then(function () {
           return ActivityCollection
             .query('where', 'activity_name', '=', 'walking')
             .fetchOne()
             .then(function (_activity) {
-              activity = _activity;
-              console.log('2');
+              activity = _activity.get('id');
             });
         })
         .then(function () {
@@ -169,8 +170,7 @@ describe('Database', function () {
             .query('where', 'region_name', '=', 'Western Europe')
             .fetchOne()
             .then(function (_region) {
-              region = _region;
-              console.log('3');
+              region = _region.get('id');
             });
         })
         .then(function () {
@@ -178,8 +178,7 @@ describe('Database', function () {
             .query('where', 'country_name', '=', 'France')
             .fetchOne()
             .then(function (_country) {
-              country = _country;
-              console.log('4');
+              country = _country.get('id');
             });
         })
         .then(function () {
@@ -187,34 +186,33 @@ describe('Database', function () {
             .query('where', 'location_name', '=', 'Paris')
             .fetchOne()
             .then(function (_location) {
-              location = _location;
-              console.log('5');
+              location = _location.get('id');
             });
         })
         .then(function () {
-          console.log('6');
-          return new models.Post({
-              comment: 'My first post!!',
-              user: user,
-              activity: activity,
-              region: region,
-              country: country,
-              location: location
+          new PostCollection()
+            .create({
+              'comment': 'My first post!!',
+              'user_id': user,
+              'activity_id': activity,
+              'region_id': region,
+              'country_id': country,
+              'location_id': location
             })
-            .save()
             .then(function () {
-              console.log('7');
               return PostCollection
                 .query('where', 'id', '=', '1')
-                .fetch();
+                .fetch({
+                  withRelated: ['user', 'activity', 'region', 'country', 'location']
+                });
             })
             .then(function (coll) {
               var postModel = _.last(coll.toJSON());
-              console.log('postModel: ', postModel);
-              expect(postModel.toJSON().post[0].activityName).to.equal('walking');
-              expect(postModel.toJSON().post[0].regionName).to.equal('Western Europe');
-              expect(postModel.toJSON().post[0].countryName).to.equal('France');
-              expect(postModel.toJSON().post[0].locationName).to.equal('Paris');
+              expect(postModel.user.username).to.equal('door');
+              expect(postModel.activity.activityName).to.equal('walking');
+              expect(postModel.region.regionName).to.equal('Western Europe');
+              expect(postModel.country.countryName).to.equal('France');
+              expect(postModel.location.locationName).to.equal('Paris');
               done();
             });
         })
