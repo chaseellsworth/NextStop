@@ -93,8 +93,8 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
       return knex.schema.createTable('locations', function (place) {
           place.increments('id').primary();
           place.string('location_name', 255);
-          //longitude
-          //latitude
+        // place.integer('longitude');
+        // place.integer('latitude');
           place.timestamps();
         })
         .then(function () {
@@ -135,6 +135,7 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
           photo.increments('id').primary();
           photo.text('comment');
           photo.integer('post_id').unsigned().references('id').inTable('posts');
+
           photo.timestamps();
         })
         .then(function () {

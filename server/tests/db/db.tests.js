@@ -221,9 +221,34 @@ describe('Database', function () {
         });
     });
   });
+
+  //tests adding a new country and creating a collection
+  describe('Photo', function () {
+    it('should create a photo with attached post', function (done) {
+      new PhotoCollection()
+        .create({
+          'comment': 'my first photo!!',
+          'post_id': 1
+        })
+        .then(function () {
+          return PhotoCollection
+            .query('where', 'post_id', '=', '1')
+            .fetch();
+        })
+        .then(function (coll) {
+          var photo = _.last(coll.toJSON());
+          expect(photo.id).to.equal(1);
+          expect(photo.postId).to.equal(1);
+          expect(photo.comment).to.equal('my first photo!!');
+          done();
+        })
+        .catch(function () {
+          throw new Error('Photo not created correctly');
+        });
+    });
+  });
+
 });
-
-
 
 //ADD TEST FOR PHOTOS
 
