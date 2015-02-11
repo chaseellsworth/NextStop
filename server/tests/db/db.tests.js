@@ -118,16 +118,16 @@ describe('Database', function () {
     it('should create a new local_place', function (done) {
       new LocalPlaceCollection()
         .create({
-          'local_place': 'Paris'
+          'local_place_name': 'Paris'
         })
         .then(function () {
-          return RegionCollection
-            .query('where', 'local_place', '=', 'Paris')
+          return LocalPlaceCollection
+            .query('where', 'local_place_name', '=', 'Paris')
             .fetch();
         })
         .then(function (coll) {
-          var _local_place = _.last(coll.toJSON()).local_place;
-          expect(_local_name).to.equal('Paris');
+          var _localPlaceName = _.last(coll.toJSON()).localPlaceName;
+          expect(_localPlaceName).to.equal('Paris');
           done();
         })
         .catch(function () {
@@ -139,7 +139,7 @@ describe('Database', function () {
 
   //tests adding a new post with associations and creating a collection
   describe('Post', function () {
-    it('should attach user to a project', function (done) {
+    it('should attach user, activity, region, country, and localPlace to a project', function (done) {
       var post;
       var user;
       var activity;
@@ -147,43 +147,87 @@ describe('Database', function () {
       var country;
       var localPlace;
       new PostCollection()
-        .create()
-        .fetch()
+        .create({
+          'comment': 'My first post!!'
+        })
+        .then(function () {
+          return PostCollection
+            .query('where', 'id', '=', '1')
+            .fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 1', err);
+        })
         .then(function (_post) {
-          var post = _post;
+          console.log('_post: ', _post);
+          post = _post;
           return new UserCollection()
             .query('where', 'username', '=', 'door').fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 2', err);
         })
         .then(function (_user) {
           user = _user;
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 3', err);
+        })
         .then(function () {
           return new ActivityCollection()
-            .query('where', 'activity_name', '=', 'walking').fetchOne();
+            .query('where', 'activity_name', '=', 'walking')
+            .fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 4', err);
         })
         .then(function (_activity) {
           activity = _activity;
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 5', err);
+        })
         .then(function () {
           return new RegionCollection()
-            .query('where', 'region_name', '=', 'Western Europe').fetchOne();
+            .query('where', 'region_name', '=', 'Western Europe')
+            .fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 6', err);
         })
         .then(function (_region) {
           region = _region;
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 7', err);
+        })
         .then(function () {
           return new CountryCollection()
-            .query('where', 'country_name', '=', 'France').fetchOne();
+            .query('where', 'country_name', '=', 'France')
+            .fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 8', err);
         })
         .then(function (_country) {
           country = _country;
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 9', err);
+        })
         .then(function () {
           return new LocalPlaceCollection()
-            .query('where', 'local_place', '=', 'Paris').fetchOne();
+            .query('where', 'local_place_name', '=', 'Paris')
+            .fetchOne();
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 10', err);
         })
         .then(function (_localPlace) {
           localPlace = _localPlace;
+        })
+        .catch(function (err) {
+          console.log('Error attaching relations 11', err);
         })
         .then(function () {
           return Promise.all([
@@ -199,20 +243,27 @@ describe('Database', function () {
             localPlace.related('post').attach(post),
           ]);
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 12', err);
+        })
         .then(function () {
           return UserCollection.query('where', 'username', '=', 'door').fetchOne({
             withRelated: ['post']
           });
         })
+        .catch(function (err) {
+          console.log('Error attaching relations 13', err);
+        })
         .then(function (_user) {
-          expect(_user.toJSON().post[0].activity_name).to.equal('walking');
-          expect(_user.toJSON().post[0].region_name).to.equal('Western Europe');
-          expect(_user.toJSON().post[0].country_name).to.equal('France');
-          expect(_user.toJSON().post[0].local_place).to.equal('Paris');
+          console.log('_user: ', _user);
+          expect(_user.toJSON().post[0].activityName).to.equal('walking');
+          expect(_user.toJSON().post[0].regionName).to.equal('Western Europe');
+          expect(_user.toJSON().post[0].countryName).to.equal('France');
+          expect(_user.toJSON().post[0].localPlaceName).to.equal('Paris');
           done();
         })
-        .catch(function () {
-          expect(false).to.equal(true);
+        .catch(function (err) {
+          console.log('Error attaching relations to post', err);
         });
     });
   });
