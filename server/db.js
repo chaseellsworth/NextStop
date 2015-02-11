@@ -20,12 +20,12 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
         user.string('username', 255);
         user.string('email', 255);
         user.string('password', 255);
-        // user.string('github_id', 255);
-        // user.string('github_name', 255);
-        // user.string('github_email', 255);
-        // user.string('github_location', 255);
-        // user.string('github_access_token', 255);
-        // user.string('github_avatar_url', 255);
+        // user.string('facebook_id', 255);
+        // user.string('facebook_name', 255);
+        // user.string('facebook_email', 255);
+        // user.string('facebook_location', 255);
+        // user.string('facebook_access_token', 255);
+        // user.string('facebook_avatar_url', 255);
         user.timestamps();
       })
       .then(function () {
@@ -93,8 +93,8 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
       return knex.schema.createTable('locations', function (place) {
           place.increments('id').primary();
           place.string('location_name', 255);
-        // place.integer('longitude');
-        // place.integer('latitude');
+          // place.integer('longitude');
+          // place.integer('latitude');
           place.timestamps();
         })
         .then(function () {
