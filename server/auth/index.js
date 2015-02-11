@@ -32,6 +32,10 @@ passport.use(new FacebookStrategy({
 		callbackURL: 'http://' + config.url + ':' + config.ports.http + '/auth/login/callback'
 	},
 	function (accessToken, refreshToken, profile, done) {
+		console.log('accessToken: ', accessToken);
+		console.log('profile: ', profile);
+		console.log('refreshToken: ', refreshToken);
+		var prof = profile._json;
 		// I'm not exactly sure when we use an accessToken and a refreshToken
 		if (accessToken !== null) {
 			new UserCollection()
@@ -45,13 +49,12 @@ passport.use(new FacebookStrategy({
 				.catch(function () {
 					return new UserCollection()
 						.create({
-							username: profile._json.login,
-							facebookId: profile._json.id,
-							facebookName: profile._json.name,
-							facebookEmail: profile._json.email,
-							facebookLocation: profile._json.location,
-							facebookAccessToken: accessToken,
-							facebookAvatarUrl: profile._json.avatar_url
+							'fb_id': prof.id,
+							'fb_full_name': prof.name,
+							'fb_first_name': prof.first_name,
+							'fb_last_name': prof.last_name,
+							'fb_gender': prof.gender,
+							'fb_access_token': accessToken
 						})
 						.then(function (user) {
 							if (!user) throw new Error('No User Found');

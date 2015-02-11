@@ -9,15 +9,17 @@
   <script src="http://use.typekit.net/ece8tca.js"></script>
   <script>try{Typekit.load();} catch(e){}</script>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/dist/main.css">
+  <!-- <link rel="stylesheet" href="/dist/main.css"> -->
 </head>
 
-<body >
+<body ng-app="travelFilter">
+<div ui-view class='main-view'></div>
+  <!-- <script src="/config.js"></script> -->
   <div>HELLO CHASE</div>
-  <a href="/auth/facebook">Login with Facebook</a>
-  <script src="/config.js"></script>
+  <a href='/auth/login'>Login with Facebook</a>
+  <!-- <script src="/config.js"></script>
   <script charset="ISO-8859-1" src="http://fast.wistia.com/assets/external/E-v1.js"></script>
-  <script src="/dist/main.js"></script>
+  <script src="/dist/main.js"></script> -->
 </body>
 
 </html>
