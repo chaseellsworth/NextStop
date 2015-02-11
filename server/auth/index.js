@@ -29,14 +29,14 @@ passport.deserializeUser(function (id, done) {
 passport.use(new FacebookStrategy({
 		clientID: config.facebook.clientID,
 		clientSecret: config.facebook.clientSecret,
-		callbackURL: 'http://' + config.url + ':' + config.ports.http + '/auth/login/callback'
+		callbackURL: 'http://' + config.url + ':' + config.ports.http + '/auth/login/callback',
+		profileFields: ['id', 'name', 'photos', 'gender'],
 	},
 	function (accessToken, refreshToken, profile, done) {
-		console.log('accessToken: ', accessToken);
-		console.log('profile: ', profile);
-		console.log('refreshToken: ', refreshToken);
+		// console.log('accessToken: ', accessToken);
+		// console.log('profile._json: ', profile._json);
+		// console.log('refreshToken: ', refreshToken);
 		var prof = profile._json;
-		// I'm not exactly sure when we use an accessToken and a refreshToken
 		if (accessToken !== null) {
 			new UserCollection()
 				.query('where', 'facebook_access_token', '=', accessToken)
@@ -50,11 +50,11 @@ passport.use(new FacebookStrategy({
 					return new UserCollection()
 						.create({
 							'fb_id': prof.id,
-							'fb_full_name': prof.name,
 							'fb_first_name': prof.first_name,
 							'fb_last_name': prof.last_name,
 							'fb_gender': prof.gender,
-							'fb_access_token': accessToken
+							'fb_access_token': accessToken,
+							'fb_profile_pic': prof.picture.data.url
 						})
 						.then(function (user) {
 							if (!user) throw new Error('No User Found');

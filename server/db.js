@@ -8,9 +8,8 @@ var config = require('../config/default.js');
 var knex = require('knex')({
   client: 'pg',
   connection: config.pg
-})
+});
 var Bookshelf = require('bookshelf')(knex);
-
 
 //users schema
 knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
@@ -21,12 +20,11 @@ knex.createAllTables = knex.schema.hasTable('users').then(function (exists) {
         user.string('email', 255);
         user.string('password', 255);
         user.string('fb_id', 255);
-        user.string('fb_full_name', 255);
         user.string('fb_first_name', 255);
         user.string('fb_last_name', 255);
+        user.string('fb_profile_pic', 255);
         user.string('fb_gender', 255);
         user.string('fb_access_token', 255);
-        // user.string('fb_avatar_url', 255);
         user.timestamps();
       })
       .then(function () {
