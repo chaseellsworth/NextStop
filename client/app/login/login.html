@@ -1,15 +1,16 @@
 <div class="login">  
   <cf-main-header></cf-main-header>
   <div class='container-fuild'>
+    
     <div class='row'>
       <div class='col-lg-4 col-sm-6 col-md-offset-4 col-sm-offset-3'>
          <tabset justified="true">
+          
           <tab heading="Login">
             <a href='/auth/login' class="btn btn-block btn-lg btn-social btn-facebook btn-facebook-login">
               <i class="fa fa-facebook"></i>
               Sign in with Facebook
             </a>
-
             <form action='auth/login' method='POST'>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -24,6 +25,7 @@
               </button>
             </form>
           </tab>
+
           <tab heading="Signup">
             <form action='auth/signup' method='POST'>
               <div class="form-group">
@@ -39,7 +41,9 @@
               </button>
             </form>
           </tab>
+
       </div>
     </div>
+
   </div>
 </div>
