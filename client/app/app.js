@@ -7,7 +7,6 @@
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
-      // $locationProvider.html5Mode(true);
       // var authenticated = ['$q', 'AuthFactory', function ($q, AuthFactory) {
       //   var deferred = $q.defer();
       //   AuthFactory.isLoggedIn(false)
@@ -26,55 +25,55 @@
           url: '/'
         })
         .state('login', {
-          templateUrl: '/index.html',
+          templateUrl: 'app/login/login.html',
           url: '/login',
+        })
+        .state('home', {
+          url: '/home',
+          views: {
+            '': {
+              templateUrl: '/app/home/home.html'
+            },
+            'projects@home': {
+              templateUrl: '/app/home/projects/projects.html',
+            }
+          },
+          // resolve: {
+          //   authenticated: authenticated
+          // }
+        })
+        .state('project', {
+          url: '/project/:projectId/:projectName/',
+          views: {
+            '': {
+              templateUrl: '/app/project/project.html',
+            },
+            'fileStructure@project': {
+              templateUrl: '/app/project/fileStructure/fileStructure.html',
+            },
+            'chat@project': {
+              templateUrl: '/app/project/chat/chat.html',
+            },
+            'toolbar@project': {
+              templateUrl: '/app/project/toolbar/toolbar.html',
+            },
+            'video@project': {
+              templateUrl: '/app/project/chat/video/video.html',
+            }
+          },
+          // resolve: {
+          //   authenticated: authenticated
+          // }
+        })
+        .state('document', {
+          parent: 'project',
+          url: 'document/:documentPath',
+          templateUrl: '/app/project/document/document.html',
+          controller: 'DocumentController',
+          // resolve: {
+          //   authenticated: authenticated
+          // }
         });
-      // // .state('home', {
-      // //   url: '/home',
-      // //   views: {
-      // //     '': {
-      // //       templateUrl: '/app/home/home.html'
-      // //     },
-      // //     'projects@home': {
-      // //       templateUrl: '/app/home/projects/projects.html',
-      // //     }
-      // //   },
-      // // //   resolve: {
-      // // //     authenticated: authenticated
-      // // //   }
-      // // // })
-      // // // .state('project', {
-      // // //   url: '/project/:projectId/:projectName/',
-      // // //   views: {
-      // // //     '': {
-      // // //       templateUrl: '/app/project/project.html',
-      // // //     },
-      // // //     'fileStructure@project': {
-      // // //       templateUrl: '/app/project/fileStructure/fileStructure.html',
-      // // //     },
-      // // //     'chat@project': {
-      // // //       templateUrl: '/app/project/chat/chat.html',
-      // // //     },
-      // // //     'toolbar@project': {
-      // // //       templateUrl: '/app/project/toolbar/toolbar.html',
-      // // //     },
-      // // //     'video@project': {
-      // // //       templateUrl: '/app/project/chat/video/video.html',
-      // // //     }
-      // // //   },
-      // // //   resolve: {
-      // // //     authenticated: authenticated
-      // // //   }
-      // // // })
-      // // .state('document', {
-      // //   parent: 'project',
-      // //   url: 'document/:documentPath',
-      // //   templateUrl: '/app/project/document/document.html',
-      // //   controller: 'DocumentController',
-      // //   resolve: {
-      // //     authenticated: authenticated
-      // //   }
-      // });
     })
     .run(function ($rootScope, $state) {
       $rootScope.$on('$stateChangeError', function (err, req) {
