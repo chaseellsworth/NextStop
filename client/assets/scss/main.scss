@@ -1,0 +1,38 @@
+// global variables for paths, colors, type, and UI dimensions
+//THIS WAS HERE UNCOMMENTED, BUT IT'S GIVING AN ERROR NOW - @import 'globals';
+
+// bootstrap glyphicons
+// This path is relative to the /dist directory and not to /assets/scss
+$bootstrap-icon-path-dist: "../lib/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+@import '#{$lib-path}normalize.css/normalize.css';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/grid';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/modals';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/forms';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/buttons';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/navs';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar';
+@import '../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns';
+@import '../../lib/bootstrap-social/bootstrap-social';
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('#{$bootstrap-icon-path-dist}#{$icon-font-name}.eot');
+  src: url('#{$bootstrap-icon-path-dist}#{$icon-font-name}.eot?#iefix'),
+       url('#{$bootstrap-icon-path-dist}#{$icon-font-name}.woff') format('woff'),
+       url('#{$bootstrap-icon-path-dist}#{$icon-font-name}.ttf') format('truetype'),
+       url('#{$bootstrap-icon-path-dist}#{$icon-font-name}.svg##{$icon-font-svg-id}') format('svg');
+}
+
+
+//THIS WAS HERE UNCOMMENTED, BUT IT'S GIVING AN ERROR NOW - @import 'custom-bootstrap';
+
+
+@import 'landing';
+@import 'nav';
+
+// Project view styling
+

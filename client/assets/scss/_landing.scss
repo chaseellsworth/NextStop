@@ -11,7 +11,7 @@
     }
   }
   &.odd {
-    background: $dark-blue-grey;
+    background: blue;
     .content {
       padding-left: 50px;
     }
@@ -31,7 +31,7 @@
 }
 
 .landing-two {
-  color: $dark-blue-grey;
+  color: blue;
   text-align: center;
   display: block;
   #greeting-image {
