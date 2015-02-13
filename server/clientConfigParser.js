@@ -1,5 +1,5 @@
 'use strict';
-var config = require('config');
+var config = require('../config/default');
 
 var clientConfigParser = function (req, res) {
 	var _config = {

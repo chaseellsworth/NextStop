@@ -22,23 +22,23 @@
       // }];
       $stateProvider
         .state('landing', {
-          templateUrl: 'app/login/login.html',
+          templateUrl: 'app/landing/landing.html',
           url: '/'
         })
         .state('login', {
           templateUrl: '/index.html',
           url: '/login',
         })
-        // // // .state('home', {
-        // // //   url: '/home',
-        // // //   views: {
-        // // //     '': {
-        // // //       templateUrl: '/app/home/home.html'
-        // // //     },
-        // // //     'projects@home': {
-        // // //       templateUrl: '/app/home/projects/projects.html',
-        // // //     }
-        // // //   },
+        // // .state('home', {
+        // //   url: '/home',
+        // //   views: {
+        // //     '': {
+        // //       templateUrl: '/app/home/home.html'
+        // //     },
+        // //     'projects@home': {
+        // //       templateUrl: '/app/home/projects/projects.html',
+        // //     }
+        // //   },
         // // //   resolve: {
         // // //     authenticated: authenticated
         // // //   }
