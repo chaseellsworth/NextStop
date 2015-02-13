@@ -3001,3 +3001,23 @@ video#bgvid {
   height: 40px;
   opacity: 0.5;
   padding: 5px; }
+
+.navbar {
+  font-size: 120%;
+  border-bottom: 1px solid lightgrey;
+  padding: 0 10px;
+  border-radius: 0;
+  position: fixed; }
+
+.navbar-header a {
+  text-decoration: none;
+  color: #736a6a; }
+
+.navbar-header a:hover {
+  text-decoration: none; }
+
+.navbar-header {
+  line-height: 50px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 120%; }
