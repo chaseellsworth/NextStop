@@ -13,18 +13,18 @@
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
-      // var authenticated = ['$q', 'AuthFactory', function ($q, AuthFactory) {
-      //   var deferred = $q.defer();
-      //   AuthFactory.isLoggedIn(false)
-      //     .then(function (isLoggedIn) {
-      //       if (isLoggedIn) {
-      //         deferred.resolve();
-      //       } else {
-      //         deferred.reject('Not logged in');
-      //       }
-      //     });
-      //   return deferred.promise;
-      // }];
+      var authenticated = ['$q', 'authFactory', function ($q, authFactory) {
+        var deferred = $q.defer();
+        authFactory.isLoggedIn(false)
+          .then(function (isLoggedIn) {
+            if (isLoggedIn) {
+              deferred.resolve();
+            } else {
+              deferred.reject('Not logged in');
+            }
+          });
+        return deferred.promise;
+      }];
       $stateProvider
         .state('login', {
           url: '/',

@@ -1,5 +1,4 @@
 'use strict';
-//How it was last time below, didn't work for me
 // var config = require('config');
 
 //passport dependencies
@@ -16,7 +15,6 @@ passport.serializeUser(function (user, done) {
 	return done(null, user.get('id'));
 });
 
-//THIS CAN PROB STAY THE SAME AS LONG AS I CREATE USERCOLLECTION THE SAME WAY
 passport.deserializeUser(function (id, done) {
 	new UserCollection()
 		.query('where', 'id', '=', id)
@@ -70,28 +68,6 @@ passport.use(new FacebookStrategy({
 	}
 ));
 
-//THIS CAN PROB STAY THE SAME AS LONG AS I MAKE SURE I HAVE THE CHECKPASSWORD FUNCTION
-passport.use(new LocalStrategy({
-		usernameField: 'email',
-	},
-	function (email, password, done) {
-		UserCollection
-			.query('where', 'email', '=', email)
-			.fetchOne()
-			.then(function (user) {
-				return user.checkPassword(password)
-					.then(function (isMatch) {
-						if (!isMatch) {
-							return done(null, false);
-						}
-						return done(null, user);
-					});
-			})
-			.catch(function () {
-				return done(null, false);
-			});
-	}
-));
 
 //THIS CAN PROB STAY THE SAME
 passport.checkIfLoggedIn = function (req, res, next) {

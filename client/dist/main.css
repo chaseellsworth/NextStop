@@ -3022,6 +3022,17 @@ video#bgvid {
   font-weight: 300;
   font-size: 120%; }
 
+.navbar-icon {
+  display: block;
+  float: left;
+  padding: 5px;
+  margin: 10px;
+  color: #736a6a;
+  line-height: 30px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 90%; }
+
 .navbar-search-bars {
   display: block;
   float: right;
@@ -3046,3 +3057,8 @@ video#bgvid {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 90%; }
+
+.fa-facebook {
+  position: fixed;
+  top: 25%;
+  left: 25%; }

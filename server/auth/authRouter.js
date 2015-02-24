@@ -17,9 +17,9 @@ authRouter.use('/login/callback', auth.authenticate('facebook'), function (req, 
 	res.redirect('/#/profile');
 });
 authRouter.get('/login', auth.authenticate('facebook'));
-authRouter.post('/signup', authController.signup);
+// authRouter.post('/signup', authController.signup);
 authRouter.use('/user', authController.getUser);
-authRouter.use('/logout', authController.logout);
+// authRouter.use('/logout', authController.logout);
 
 //export
 module.exports = authRouter;
