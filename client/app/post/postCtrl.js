@@ -2,7 +2,7 @@
 
 (function () {
 	'use strict';
-	angular.module('travelFilter.post', [])
+	angular.module('travelFilter.post', ['ui.router'])
 		.controller('PostController', PostController);
 
 	PostController.$inject = [];

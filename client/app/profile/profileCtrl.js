@@ -2,7 +2,7 @@
 
 (function () {
 	'use strict';
-	angular.module('travelFilter.profile', [])
+	angular.module('travelFilter.profile', ['ui.router'])
 		.controller('ProfileController', ProfileController);
 
 	ProfileController.$inject = [];

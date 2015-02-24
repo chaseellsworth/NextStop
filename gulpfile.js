@@ -18,6 +18,7 @@ gulp.task('sass', function () {
 //concats js, uglifying commented out currently
 gulp.task('js', function () {
   gulp.src([
+      //bower components
       './client/lib/underscore/underscore.js',
       './client/lib/angular/angular.js',
       './client/lib/bootstrap-sass-official/assets/javascripts/bootstrap-sprockets.js',
@@ -26,11 +27,17 @@ gulp.task('js', function () {
       './client/lib/angular-ui-router/release/angular-ui-router.js',
       './client/lib/angular-scroll-glue/src/scrollglue.js',
       './client/lib/jshashes/hashes.js',
-      './client/app/landing/landing.js',
-      './client/app/app.js',
       './client/lib/moment/moment.js',
       './client/lib/angular-sanitize/angular-sanitize.js',
       './client/lib/ng-file-upload/angular-file-upload.js',
+      //app
+      './client/app/app.js',
+      './client/app/landing/landing.js',
+      './client/app/map/mapCtrl.js',
+      './client/app/nav/navCtrl.js',
+      './client/app/newsfeed/newsfeedCtrl.js',
+      './client/app/post/postCtrl.js',
+      './client/app/profile/profileCtrl.js'
     ])
     .pipe(concat('main.js'))
     // .pipe(uglify())

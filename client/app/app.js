@@ -4,6 +4,7 @@
   angular.module('travelFilter', [
       'ui.router',
       'angularFileUpload',
+      'travelFilter.nav',
       'travelFilter.map',
       'travelFilter.newsfeed',
       'travelFilter.post',
@@ -24,29 +25,33 @@
       //   return deferred.promise;
       // }];
       $stateProvider
-        .state('landing', {
-          url: '/',
-          templateUrl: '/app/landing/landing.html'
-        })
         .state('login', {
-          url: '/login',
-          templateUrl: 'app/login/login.html'
+          url: '/',
+          templateUrl: '/app/login/login.html'
         })
+        // .state('login', {
+        //   url: '/login',
+        //   templateUrl: 'app/login/login.html'
+        // })
         .state('newsfeed', {
           url: '/newsfeed',
-          templateUrl: 'app/newsfeed/newsfeed.html'
+          templateUrl: 'app/newsfeed/newsfeed.html',
+          controller: 'NewsfeedController'
         })
         .state('map', {
           url: '/map',
-          templateUrl: 'app/map/map.html'
+          templateUrl: 'app/map/map.html',
+          controller: 'MapController'
         })
         .state('profile', {
           url: '/profile',
-          templateUrl: 'app/profile/profile.html'
+          templateUrl: 'app/profile/profile.html',
+          controller: 'ProfileController'
         })
         .state('post', {
           url: '/post',
-          templateUrl: 'app/post/post.html'
+          templateUrl: 'app/post/post.html',
+          controller: 'PostController'
         });
       // .state('home', {
       //   url: '/home',
