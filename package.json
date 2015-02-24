@@ -49,6 +49,7 @@
     "is-git-url": "^0.1.0",
     "jshashes": "^1.0.5",
     "jszip": "^2.4.0",
+    "karma": "^0.12.31",
     "knex": "^0.7.3",
     "lodash": "^2.4.1",
     "lodash-contrib": "^241.4.14",
