@@ -14,9 +14,9 @@ var authRouter = express.Router();
 
 //Routes
 authRouter.use('/login/callback', auth.authenticate('facebook'), function (req, res) {
-	res.redirect('/#/index.html');
+	res.redirect('/#/profile');
 });
-authRouter.post('/login', auth.authenticate('local'), authController.login);
+// authRouter.post('/login', auth.authenticate('local'), authController.login);
 authRouter.get('/login', auth.authenticate('facebook'));
 authRouter.post('/signup', authController.signup);
 authRouter.use('/user', authController.getUser);

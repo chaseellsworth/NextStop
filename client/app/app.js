@@ -57,16 +57,16 @@
       //   url: '/home',
       //   views: {
       //     '': {
-      //       templateUrl: '/app/home/home.html'
-      //     },
-      //     'projects@home': {
-      //       templateUrl: '/app/home/projects/projects.html',
+      //       templateUrl: '/app/profile/profile.html'
       //     }
-      //   },
-      //   // resolve: {
-      //   //   authenticated: authenticated
-      //   // }
-      // })
+      // 'projects@home': {
+      //   templateUrl: '/app/home/projects/projects.html',
+      // }
+      // },
+      // resolve: {
+      //   authenticated: authenticated
+      // }
+      // });
       // .state('project', {
       //   url: '/project/:projectId/:projectName/',
       //   views: {

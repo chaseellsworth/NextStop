@@ -33,7 +33,7 @@ passport.use(new FacebookStrategy({
 		profileFields: ['id', 'name', 'photos', 'gender'],
 	},
 	function (accessToken, refreshToken, profile, done) {
-		// console.log('accessToken: ', accessToken);
+		console.log('accessToken: ', accessToken);
 		// console.log('profile._json: ', profile._json);
 		// console.log('refreshToken: ', refreshToken);
 		var prof = profile._json;
@@ -57,6 +57,7 @@ passport.use(new FacebookStrategy({
 							'fb_profile_pic': prof.picture.data.url
 						})
 						.then(function (user) {
+							console.log('user: ', user);
 							if (!user) throw new Error('No User Found');
 							return done(null, user);
 						});
