@@ -32,6 +32,7 @@ gulp.task('js', function () {
       './client/lib/ng-file-upload/angular-file-upload.js',
       //app
       './client/app/app.js',
+      './client/app/a-dataServices/authFactory.js',
       './client/app/landing/landing.js',
       './client/app/map/mapCtrl.js',
       './client/app/nav/navCtrl.js',

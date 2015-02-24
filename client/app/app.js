@@ -4,6 +4,7 @@
   angular.module('travelFilter', [
       'ui.router',
       'angularFileUpload',
+      'travelFilter.services',
       'travelFilter.nav',
       'travelFilter.map',
       'travelFilter.newsfeed',
@@ -29,10 +30,6 @@
           url: '/',
           templateUrl: '/app/login/login.html'
         })
-        // .state('login', {
-        //   url: '/login',
-        //   templateUrl: 'app/login/login.html'
-        // })
         .state('newsfeed', {
           url: '/newsfeed',
           templateUrl: 'app/newsfeed/newsfeed.html',
